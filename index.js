@@ -1,5 +1,7 @@
 const express = require('express');
 const app = express();
+const router = require('./config/routes');
+const cors = require('cors');
 
 const mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
@@ -14,11 +16,14 @@ const errorHandler = require('./lib/errorHandler');
 
 mongoose.connect(dbURI, { useMongoClient: true });
 
+app.use(cors());
 if('test' !== env) app.use(morgan('dev'));
 app.use(express.static(`${__dirname}/public`));
 app.use(bodyParser.json());
 
+
 app.use(customResponses);
+app.use('/api', router);
 
 app.get('/*', (req, res) => res.sendFile(`${__dirname}/public/index.html`));
 
