@@ -1,0 +1,33 @@
+@font-face {
+  font-family: '8bit_wondernominal';
+  src: url('../assets/fonts/8-bit_wonder-webfont.woff2') format('woff2'),
+       url('../assets/fonts/8-bit_wonder-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+    font-family: 'thin_pixe-l7regular';
+    src: url('../assets/fonts/thin_pixel-7-webfont.woff2') format('woff2'),
+         url('../assets/fonts/thin_pixel-7-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+h1 {
+  font-family: $font-h1;
+  text-align: center;
+  color: $color-primary;
+  font-size: $font-size-h1;
+  text-shadow: 2px 2px $color-secondary;
+  margin: 0;
+}
+h2 {
+  text-align :center;
+  font-size: $font-size-h2;
+  font-family: $font-h2;
+}
+
+.fa {
+  margin-right: 6px;
+}

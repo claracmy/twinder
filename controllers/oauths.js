@@ -5,6 +5,7 @@ const jwt = require('jsonwebtoken');
 const { secret } = require('../config/environment');
 
 function twitch(req, res, next) {
+  let twitchToken = '';
   return rp({
     method: 'POST',
     url: 'https://api.twitch.tv/kraken/oauth2/token',
@@ -18,6 +19,7 @@ function twitch(req, res, next) {
     json: true
   })
     .then(token => {
+      twitchToken = token.access_token;
       return rp({
         method: 'GET',
         url: 'https://api.twitch.tv/helix/users',
@@ -43,9 +45,11 @@ function twitch(req, res, next) {
       return user.save();
     })
     .then(user => {
+      console.log(twitchToken);
       const payload = { userId: user.id };
       const token = jwt.sign(payload, secret, {expiresIn: '1hr'});
       return res.json({
+        twitchToken,
         token,
         user,
         message: `Welcome back ${user.displayName}`

@@ -18,6 +18,7 @@ class Navbar extends React.Component {
       <nav>
         <ul>
           <Link to="/">Twinder</Link>
+          <Link to="/streams">Browse Streams</Link>
           <OAuthButton getUser={ this.getUser }/>
           { this.state.user.displayName && <Link to={`/users/${this.state.user._id}`}>{this.state.user.displayName}</Link> }
         </ul>

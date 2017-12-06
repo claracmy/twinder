@@ -1,0 +1,17 @@
+nav {
+  background-color: transparent;
+  position: absolute;
+  z-index: 9999;
+  a {
+    text-decoration: none;
+    padding: 20px;
+    color: $color-accent;
+    &:hover {
+      text-decoration: none;
+    }
+  }
+  li {
+    list-style: none;
+    display: inline-block;
+  }
+}

@@ -1,11 +1,20 @@
 const Stream = require('../models/stream');
-const oauths = require('../config/oauths');
 const rp = require('request-promise');
 
 function streamIndex(req, res, next) {
   return rp({
-    method: ''
+    method: 'GET',
+    url: 'https://api.twitch.tv/helix/streams',
+    json: true,
+    headers: {
+      'User-Agent': 'Request-Promise',
+      'Authorization': `Bearer ${req.headers.twitchtoken}`
+    }
   })
+    .then(streams => {
+      return res.status(200).json(streams);
+    })
+    .catch(next);
 }
 
 function streamShow(req, res, next) {

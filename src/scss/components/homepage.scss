@@ -1,0 +1,35 @@
+@import '../variables';
+
+.hero-container {
+  // background-image: url('https://imgur.com/HeEbdlq.png');
+  background-image: url('https://imgur.com/aECsZYZ.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 800px;
+
+  button {
+    background-color: transparent;
+    margin-left: 43%;
+    border: none;
+    background-image: url('https://imgur.com/al2COtX.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    padding: 20px 30px 20px 25px;
+    &:active, &:hover {
+      background-image: url('https://imgur.com/s0JJf6c.png');
+      background-repeat: no-repeat;
+      background-size: contain;
+    }
+  }
+
+  h1 {
+    padding-top: 15%;
+  }
+  
+  a {
+    color: $color-accent;
+    text-align: center;
+    font-size: 14px;
+    text-decoration: none;
+  }
+}

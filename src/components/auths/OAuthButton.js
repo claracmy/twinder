@@ -24,6 +24,7 @@ class OAuthButton extends React.Component {
       .then(res => {
         this.setState({ user: res.data.user});
         this.props.getUser(res.data.user);
+        localStorage.setItem('twitchToken', res.data.twitchToken);
         Auth.setToken(res.data.token);
       })
       .catch(err => console.log(err));
