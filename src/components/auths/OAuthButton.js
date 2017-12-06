@@ -27,7 +27,7 @@ class OAuthButton extends React.Component {
 
   render() {
     return (
-      <a href={ this.AuthLink }>Login with Twitch</a>
+      <a href={ this.AuthLink }><i className="fa fa-twitch" aria-hidden="true"></i>Login with Twitch</a>
     );
   }
 }

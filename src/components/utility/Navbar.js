@@ -4,6 +4,7 @@ import React from 'react';
 import OAuthButton from '../auths/OAuthButton';
 
 const Navbar = () => {
+
   return(
     <nav>
       <ul>
