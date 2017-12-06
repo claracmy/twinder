@@ -13,4 +13,4 @@ const streamSchema = new mongoose.Schema({
   thumbnail_url: { type: String }
 });
 
-module.exports = mongoose.model('Streamer', streamSchema);
+module.exports = mongoose.model('Stream', streamSchema);

@@ -1,3 +1,20 @@
+@font-face {
+  font-family: '8bit_wondernominal';
+  src: url('../assets/fonts/8-bit_wonder-webfont.woff2') format('woff2'),
+       url('../assets/fonts/8-bit_wonder-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+    font-family: 'thin_pixe-l7regular';
+    src: url('../assets/fonts/thin_pixel-7-webfont.woff2') format('woff2'),
+         url('../assets/fonts/thin_pixel-7-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
 html, body {
   padding: 0;
   margin: 0;
@@ -7,6 +24,19 @@ nav {
   background-color: transparent;
   position: absolute;
   z-index: 9999;
+  a {
+    text-decoration: none;
+    padding: 20px;
+    color: white;
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
+
+li {
+  list-style: none;
+  display: inline-block;
 }
 
 button, a {
@@ -21,12 +51,18 @@ button, a {
   background-size: cover;
   height: 800px;
   h1 {
+    font-family: '8bit_wondernominal';
     text-align: center;
     padding-top: 15%;
+    color: #4b367c;
+    font-size: 70px;
+    text-shadow: 2px 2px grey;
     margin: 0;
   }
   h2 {
     text-align :center;
+    font-size: 50px;
+    font-family: 'thin_pixe-l7regular';
   }
   button {
     background-color: transparent;

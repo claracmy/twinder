@@ -1,14 +1,14 @@
 import React from 'react';
 import Axios from 'axios';
-// import queryString from 'query-string';
 
-// import Auth from '../../lib/Auth';
+import Auth from '../../lib/Auth';
 import OAuth from '../../lib/OAuth';
 
 class OAuthButton extends React.Component {
 
   state = {
-    code: ''
+    code: '',
+    user: {}
   }
 
   componentWillMount() {
@@ -21,7 +21,11 @@ class OAuthButton extends React.Component {
 
     Axios
       .post('/api/oauth/twitch', {code})
-      .then(res => console.log(res))
+      .then(res => {
+        this.setState({ user: res.data.user});
+        this.props.getUser(res.data.user);
+        Auth.setToken(res.data.token);
+      })
       .catch(err => console.log(err));
   }
 
