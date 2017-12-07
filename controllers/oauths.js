@@ -22,30 +22,32 @@ function twitch(req, res, next) {
       twitchToken = token.access_token;
       return rp({
         method: 'GET',
-        url: 'https://api.twitch.tv/helix/users',
+        url: 'https://api.twitch.tv/kraken/channel',
         json: true,
         headers: {
           'User-Agent': 'Request-Promise',
-          'Authorization': `Bearer ${token.access_token}`
+          'Authorization': `OAuth ${token.access_token}`,
+          'Accept': 'application/vnd.twitchtv.v5+json',
+          'Client-ID': oauths.twitch.clientId
         }
       });
     })
     .then(profile => {
-      req._profile = profile.data[0];
-      return User.findOne({ twitchId: req._profile.id });
+      req._profile = profile;
+      return User.findOne({ twitchId: req._profile._id });
     })
     .then(user => {
       if (!user) {
         user = new User({
-          twitchId: req._profile.id,
+          twitchId: req._profile._id,
           displayName: req._profile.display_name
         });
       }
-      user.displayImage = req._profile.profile_image_url;
+      user.games = req._profile.game;
+      user.displayImage = req._profile.logo;
       return user.save();
     })
     .then(user => {
-      console.log(twitchToken);
       const payload = { userId: user.id };
       const token = jwt.sign(payload, secret, {expiresIn: '1hr'});
       return res.json({

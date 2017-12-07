@@ -6,7 +6,7 @@ class OAuth {
     url: '/api/oauth/twitch',
     authorizationEndpoint: 'https://api.twitch.tv/kraken/oauth2/authorize',
     redirectUri: 'http://localhost:8000',
-    scope: ['user_read'],
+    scope: ['channel_read'],
     scopeDelimiter: ' ',
     display: 'popup',
     oauthType: '2.0',

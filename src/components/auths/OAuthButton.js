@@ -7,7 +7,6 @@ import OAuth from '../../lib/OAuth';
 class OAuthButton extends React.Component {
 
   state = {
-    code: '',
     user: {}
   }
 
@@ -15,9 +14,7 @@ class OAuthButton extends React.Component {
     this.AuthLink = OAuth.getAuthLink(OAuth.twitch);
 
     if (!location.search.match(/\?code=(.+)&/)) return false;
-
     const code = location.search.match(/\?code=(.+)&/)[1];
-    this.setState({ code });
 
     Axios
       .post('/api/oauth/twitch', {code})
