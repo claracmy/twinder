@@ -23,9 +23,6 @@ class StreamsIndex extends React.Component {
   }
 
   componentWillMount() {
-    // let userData = null;
-
-    // request user data
 
     Axios
       .get('/api/streams', {
@@ -34,18 +31,21 @@ class StreamsIndex extends React.Component {
         }
       })
       .then(res => {
+        const followerCeiling = Math.ceil(res.data.followers * 1.3);
+        const followerFloor = Math.ceil(res.data.followers * 0.7);
+        const mature = res.data.mature;
+
         const array = [];
-        res.data.forEach(obj => {
+        res.data.streamResults.forEach(obj => {
           array.push(obj.streams);
         });
 
+
         const merged = [].concat.apply([], array);
-        const filterByFollower = merged.filter(stream => stream.channel.followers < 200 && stream.channel.followers > 100);
-        console.log(filterByFollower);
+        const filterByFollower = merged.filter(stream => stream.channel.followers <= followerCeiling && stream.channel.followers >= followerFloor);
+        const filterByMature = filterByFollower.filter(stream => stream.channel.mature === mature);
 
-
-        // this.setState({ streams: res.data.streams });
-
+        this.setState({ streams: filterByMature });
 
       })
       .catch(err => console.log(err));
@@ -69,7 +69,7 @@ class StreamsIndex extends React.Component {
               <p>Channel followers: { stream.channel.followers}</p>
               <p>Channel views: {stream.channel.views}</p>
               <p>Stream language: {stream.channel.language}</p>
-              <p>Mature? {`${stream.channel.mature}`} </p>
+              <p>Mature: {`${stream.channel.mature}`} </p>
             </div>
           )}
         </div>

@@ -4,6 +4,8 @@ const rp = require('request-promise');
 function streamIndex(req, res, next) {
   let game = '';
   let language = '';
+  let followers = '';
+  let mature = '';
 
   return rp({
     method: 'GET',
@@ -15,8 +17,11 @@ function streamIndex(req, res, next) {
     }
   })
     .then(profile => {
+      mature = profile.mature;
+      followers = profile.followers;
       game = profile.game;
       language = profile.language;
+
       return rp({
         method: 'GET',
         url: `https://api.twitch.tv/kraken/streams/?language=${language}&game=${game}&limit=100`,
@@ -46,8 +51,8 @@ function streamIndex(req, res, next) {
       }
       return Promise.all(allPages);
     })
-    .then(results2 => {
-      return res.json(results2);
+    .then(streamResults => {
+      return res.json({streamResults, followers, mature});
     })
     .catch(next);
 }

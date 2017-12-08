@@ -19,7 +19,6 @@ function twitch(req, res, next) {
     json: true
   })
     .then(token => {
-      console.log(token);
       twitchToken = token.access_token;
       return rp({
         method: 'GET',
@@ -50,7 +49,6 @@ function twitch(req, res, next) {
       return user.save();
     })
     .then(user => {
-      console.log(user);
       const payload = { userId: user.id };
       const token = jwt.sign(payload, secret, {expiresIn: '1hr'});
       return res.json({
