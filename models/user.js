@@ -5,6 +5,7 @@ const userSchema = new mongoose.Schema({
   displayName: { type: String, unique: true },
   displayImage: { type: String },
   language: { type: String },
+  mature: { type: Boolean },
   games: [String]
 });
 

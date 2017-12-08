@@ -2,7 +2,6 @@ const Stream = require('../models/stream');
 const rp = require('request-promise');
 
 function streamIndex(req, res, next) {
-  // let userFollowers = '';
   let game = '';
   let language = '';
 
@@ -16,7 +15,6 @@ function streamIndex(req, res, next) {
     }
   })
     .then(profile => {
-      // userFollowers = profile.followers * 1.3 ;
       game = profile.game;
       language = profile.language;
       return rp({
@@ -49,7 +47,6 @@ function streamIndex(req, res, next) {
       return Promise.all(allPages);
     })
     .then(results2 => {
-      // console.log(results2);
       return res.json(results2);
     })
     .catch(next);

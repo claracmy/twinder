@@ -19,6 +19,7 @@ function twitch(req, res, next) {
     json: true
   })
     .then(token => {
+      console.log(token);
       twitchToken = token.access_token;
       return rp({
         method: 'GET',
@@ -43,11 +44,13 @@ function twitch(req, res, next) {
           displayName: req._profile.display_name
         });
       }
+      user.mature = req._profile.mature;
       user.games = req._profile.game;
       user.displayImage = req._profile.logo;
       return user.save();
     })
     .then(user => {
+      console.log(user);
       const payload = { userId: user.id };
       const token = jwt.sign(payload, secret, {expiresIn: '1hr'});
       return res.json({

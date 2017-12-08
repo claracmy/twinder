@@ -23,6 +23,9 @@ class StreamsIndex extends React.Component {
   }
 
   componentWillMount() {
+    // let userData = null;
+
+    // request user data
 
     Axios
       .get('/api/streams', {
@@ -31,7 +34,19 @@ class StreamsIndex extends React.Component {
         }
       })
       .then(res => {
-        this.setState({ streams: res.data.streams });
+        const array = [];
+        res.data.forEach(obj => {
+          array.push(obj.streams);
+        });
+
+        const merged = [].concat.apply([], array);
+        const filterByFollower = merged.filter(stream => stream.channel.followers < 200 && stream.channel.followers > 100);
+        console.log(filterByFollower);
+
+
+        // this.setState({ streams: res.data.streams });
+
+
       })
       .catch(err => console.log(err));
   }
