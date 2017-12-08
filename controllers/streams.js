@@ -2,7 +2,7 @@ const Stream = require('../models/stream');
 const rp = require('request-promise');
 
 function streamIndex(req, res, next) {
-  let userFollowers = '';
+  // let userFollowers = '';
   let game = '';
   let language = '';
 
@@ -16,7 +16,7 @@ function streamIndex(req, res, next) {
     }
   })
     .then(profile => {
-      userFollowers = profile.followers;
+      // userFollowers = profile.followers * 1.3 ;
       game = profile.game;
       language = profile.language;
       return rp({
@@ -29,23 +29,28 @@ function streamIndex(req, res, next) {
         }
       });
     })
-    .then(res => {
-      const offset = 100;
-      if ((res.streams[0].channel.followers > userFollowers) && (res.streams[99].channel.followers > userFollowers)) {
-        return rp({
+    .then(results => {
+      const allPages = [];
+      const pages = Math.ceil(results._total / 100);
+
+      for ( let i = 0; i < pages; i ++ ) {
+        const offset = i * 100;
+        const eachPage = {
           method: 'GET',
-          url: `https://api.twitch.tv/kraken/streams/?language=${language}&game=${game}&limit=1&offset=${offset}`,
+          url: `https://api.twitch.tv/kraken/streams/?language=${language}&game=${game}&limit=100&offset=${offset}`,
           json: true,
           headers: {
             'User-Agent': 'Request-Promise',
             'Authorization': `OAuth ${req.headers.twitchtoken}`
           }
-        });
+        };
+        allPages.push(rp(eachPage));
       }
+      return Promise.all(allPages);
     })
-    .then(res => {
-
-      return res.json(res.data);
+    .then(results2 => {
+      // console.log(results2);
+      return res.json(results2);
     })
     .catch(next);
 }

@@ -17,8 +17,9 @@ class StreamsIndex extends React.Component {
   }
 
   sort = () => {
+    const orderedStreams = _.orderBy(this.state.streams, ['channel.followers'], ['asc']);
     const regex = new RegExp(this.state.query, 'i');
-    return _.filter(this.state.streams, (stream) => (regex.test(stream.game)));
+    return _.filter(orderedStreams, (stream) => (regex.test(stream.game)));
   }
 
   componentWillMount() {
