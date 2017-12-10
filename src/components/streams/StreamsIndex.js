@@ -2,7 +2,7 @@ import React from 'react';
 import Axios from 'axios';
 import _ from 'lodash';
 
-import SearchBar from '../utility/SearchBar';
+// import SearchBar from '../utility/SearchBar';
 import StreamsCard from '../streams/StreamsCard';
 
 class StreamsIndex extends React.Component {
@@ -53,7 +53,7 @@ class StreamsIndex extends React.Component {
     return(
       <div className="streams-index">
         <h1>Streams Index</h1>
-        <SearchBar handleSearch={ this.handleSearch } />
+        {/* <SearchBar handleSearch={ this.handleSearch } /> */}
         { streams[0] && <StreamsCard streams={ streams }/>}
       </div>
     );
