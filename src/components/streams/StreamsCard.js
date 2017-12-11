@@ -22,7 +22,7 @@ class StreamsCard extends React.Component {
 
   handleLike = () => {
     const i = this.state.i;
-    this.state.user.likes.push(this.props.streams[i].channel._id);
+    this.state.user.likes.push(this.props.streams[i].channel.display_name);
     Axios
       .post('/')
     // window.open(`https://www.twitch.tv/${this.props.streams[i].channel.display_name}`, '_blank');
@@ -31,7 +31,7 @@ class StreamsCard extends React.Component {
 
   handleDislike = () => {
     const i = this.state.i;
-    this.state.user.dislikes.push(this.props.streams[i].channel._id);
+    this.state.user.dislikes.push(this.props.streams[i].channel.display_name);
     this.setState(prevState => ({ i: prevState.i + 1 }));
     console.log(this.state.user);
   }

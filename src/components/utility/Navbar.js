@@ -5,6 +5,7 @@ import Auth from '../../lib/Auth';
 import OAuthButton from '../auths/OAuthButton';
 
 class Navbar extends React.Component {
+
   state = {
     user: {}
   }
@@ -15,8 +16,14 @@ class Navbar extends React.Component {
   };
 
   getUser = (user) => {
+    localStorage.setItem('currentUser', JSON.stringify(user));
     this.setState({ user });
     this.props.history.push('/');
+  }
+
+  componentWillMount() {
+    const user = JSON.parse(localStorage.getItem('currentUser'));
+    this.setState({ user });
   }
 
   render() {

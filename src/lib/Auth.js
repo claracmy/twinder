@@ -16,8 +16,7 @@ class Auth {
   }
 
   static logout() {
-    localStorage.removeItem('token');
-    localStorage.removeItem('twitchToken');
+    localStorage.clear();
   }
 
   static getPayload() {

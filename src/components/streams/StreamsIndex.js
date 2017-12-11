@@ -26,15 +26,15 @@ class StreamsIndex extends React.Component {
       })
       .then(res => {
         const followerCeiling = Math.ceil(res.data.followers * 1.3);
-        const followerFloor = Math.ceil(res.data.followers * 0.7);
+        const followerFloor = Math.ceil(res.data.followers * 0.8);
         const mature = res.data.mature;
 
         const array = [];
         res.data.streamResults.forEach(obj => {
           array.push(obj.streams);
         });
-
         const merged = [].concat.apply([], array);
+        
         const filterByFollowersAndMature = merged.filter(stream => stream.channel.followers <= followerCeiling && stream.channel.followers >= followerFloor && stream.channel.mature === mature);
 
         this.setState({ streams: filterByFollowersAndMature });
