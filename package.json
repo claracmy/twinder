@@ -10,8 +10,8 @@
     "start:server": "nodemon",
     "build": "webpack -p",
     "seed": "node db/seeds",
-    "test:client": "node_modules/.bin/_mocha test/client/helper \"test/client/**/*_test.js\"",
-    "test:server": "node_modules/.bin/_mocha \"test/api/**/*_test.js\"",
+    "test:client": "istanbul cover node_modules/.bin/_mocha test/client/helper \"test/client/**/*_test.js\"",
+    "test:server": "istanbul cover node_modules/.bin/_mocha \"test/api/**/*_test.js\"",
     "test": "yarn test:server && yarn test:client"
   },
   "dependencies": {
@@ -31,6 +31,7 @@
     "request-promise": "^4.2.2"
   },
   "devDependencies": {
+    "atob": "^2.0.3",
     "babel-core": "^6.25.0",
     "babel-loader": "^7.1.1",
     "babel-plugin-transform-class-properties": "^6.24.1",
@@ -45,6 +46,7 @@
     "enzyme-adapter-react-15": "^1.0.2",
     "file-loader": "^0.11.2",
     "html-webpack-plugin": "^2.29.0",
+    "istanbul": "^0.4.5",
     "jsdom": "^11.3.0",
     "mocha": "^3.3.0",
     "node-sass": "^4.5.3",

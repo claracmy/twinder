@@ -6,6 +6,7 @@ const { secret } = require('../config/environment');
 
 function twitch(req, res, next) {
   let twitchToken = '';
+  console.log(req.body);
   return rp({
     method: 'POST',
     url: 'https://api.twitch.tv/kraken/oauth2/token',

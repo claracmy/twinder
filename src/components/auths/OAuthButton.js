@@ -6,10 +6,6 @@ import OAuth from '../../lib/OAuth';
 
 class OAuthButton extends React.Component {
 
-  state = {
-    user: {}
-  }
-
   componentWillMount() {
     this.AuthLink = OAuth.getAuthLink(OAuth.twitch);
 
@@ -17,12 +13,11 @@ class OAuthButton extends React.Component {
     const code = location.search.match(/\?code=(.+)&/)[1];
 
     Axios
-      .post('/api/oauth/twitch', {code})
+      .post('/api/oauth/twitch', { code })
       .then(res => {
-        this.setState({ user: res.data.user});
-        this.props.getUser(res.data.user);
         localStorage.setItem('twitchToken', res.data.twitchToken);
         Auth.setToken(res.data.token);
+        this.props.getUser(res.data.user);
       })
       .catch(err => console.log(err));
   }

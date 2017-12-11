@@ -1,16 +1,22 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
+import Auth from '../../lib/Auth';
 import OAuthButton from '../auths/OAuthButton';
 
 class Navbar extends React.Component {
-
   state = {
     user: {}
   }
 
-  getUser = ( user ) => {
+  logout = () => {
+    Auth.logout();
+    this.props.history.push('/');
+  };
+
+  getUser = (user) => {
     this.setState({ user });
+    this.props.history.push('/');
   }
 
   render() {
@@ -19,12 +25,13 @@ class Navbar extends React.Component {
         <ul>
           <Link to="/">Twinder</Link>
           <Link to="/streams">Browse Streams</Link>
-          <OAuthButton getUser={ this.getUser }/>
-          { this.state.user.displayName && <Link to={`/users/${this.state.user._id}`}>{this.state.user.displayName}</Link> }
+          { !Auth.isAuthenticated() && <OAuthButton getUser={ this.getUser }/> }
+          { Auth.isAuthenticated() && this.state.user.displayName && <Link to={`/users/${this.state.user._id}`}>{this.state.user.displayName}</Link> }
+          { Auth.isAuthenticated() && <a onClick={ this.logout }>Logout</a> }
         </ul>
       </nav>
     );
   }
 }
 
-export default Navbar;
+export default withRouter(Navbar);

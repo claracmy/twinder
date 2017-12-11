@@ -44,6 +44,8 @@ function copyProps(src, target) {
 
 global.window = window;
 global.document = window.document;
+global.location = window.location;
+global.atob = window.atob = require('atob');
 global.localStorage = window.localStorage;
 global.navigator = {
   userAgent: 'node.js'

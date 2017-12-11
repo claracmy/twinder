@@ -53,6 +53,7 @@ class StreamsIndex extends React.Component {
     return(
       <div className="streams-index">
         <h1>Streams Index</h1>
+        { !streams[0] && <p>You do not have any games added yet!</p> }
         {/* <SearchBar handleSearch={ this.handleSearch } /> */}
         { streams[0] && <StreamsCard streams={ streams }/>}
       </div>
