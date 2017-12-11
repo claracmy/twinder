@@ -1,14 +1,40 @@
 import React from 'react';
+import Axios from 'axios';
+
+import Auth from '../../lib/Auth';
 
 class StreamsCard extends React.Component {
 
   state = {
-    i: 0
+    i: 0,
+    user: {}
   }
 
-  handleClick = () => {
+  componentWillMount() {
+    Axios
+      .get(`/api/users/${Auth.getPayload().userId}`)
+      .then(res => {
+        this.setState({ user: res.data });
+      })
+      .catch(err => console.log(err));
+  }
+
+
+  handleLike = () => {
+    const i = this.state.i;
+    this.state.user.likes.push(this.props.streams[i].channel._id);
+    Axios
+      .post('/')
+    // window.open(`https://www.twitch.tv/${this.props.streams[i].channel.display_name}`, '_blank');
     this.setState(prevState => ({ i: prevState.i + 1 }));
-  };
+  }
+
+  handleDislike = () => {
+    const i = this.state.i;
+    this.state.user.dislikes.push(this.props.streams[i].channel._id);
+    this.setState(prevState => ({ i: prevState.i + 1 }));
+    console.log(this.state.user);
+  }
 
 
   render() {
@@ -26,7 +52,8 @@ class StreamsCard extends React.Component {
           <p>Channel views: {this.props.streams[i].channel.views}</p>
           <p>Stream language: {this.props.streams[i].channel.language}</p>
           <p>Mature: {`${this.props.streams[i].channel.mature}`} </p>
-          <button onClick={this.handleClick}>Next</button>
+          <button onClick={ this.handleLike }>Yay</button>
+          <button onClick={ this.handleDislike }>Nay</button>
         </div>
       </div>
     );

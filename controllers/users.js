@@ -17,6 +17,10 @@ function usersShow(req, res, next) {
     .catch(next);
 }
 
+function usersUpdate(req, res, next) {
+  
+}
+
 module.exports = {
   index: usersIndex,
   show: usersShow

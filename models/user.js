@@ -6,7 +6,9 @@ const userSchema = new mongoose.Schema({
   displayImage: { type: String },
   language: { type: String },
   mature: { type: Boolean },
-  games: [String]
+  games: [String],
+  likes: [String],
+  dislikes: [String]
 });
 
 module.exports = mongoose.model('User', userSchema);
