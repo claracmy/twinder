@@ -2,6 +2,9 @@ nav {
   background-color: transparent;
   position: absolute;
   z-index: 9999;
+  li {
+    display: inline-block;
+  }
   a {
     text-decoration: none;
     padding: 20px;

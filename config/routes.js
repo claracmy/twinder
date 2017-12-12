@@ -4,7 +4,8 @@ const users = require('../controllers/users');
 const streams = require('../controllers/streams');
 
 router.route('/users').get(users.index);
-router.route('/users/:id').get(users.show).put(users.update);
+router.route('/users/:id').get(users.show).put(users.update).patch(users.patch);
+
 
 router.route('/oauth/twitch').post(oauths.twitch);
 

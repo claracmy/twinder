@@ -30,8 +30,19 @@ function usersUpdate(req, res, next) {
     .catch(next);
 }
 
+function usersPatch(req, res, next) {
+  User
+    .findByIdAndUpdate(req.params.id, {$set: req.body}, { new: true })
+    .exec()
+    .then(user => {
+      return res.status(200).json({ user });
+    })
+    .catch(next);
+}
+
 module.exports = {
   index: usersIndex,
   show: usersShow,
-  update: usersUpdate
+  update: usersUpdate,
+  patch: usersPatch
 };
