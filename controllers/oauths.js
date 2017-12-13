@@ -6,7 +6,7 @@ const { secret } = require('../config/environment');
 
 function twitch(req, res, next) {
   let twitchToken = '';
-  console.log(req.body);
+
   return rp({
     method: 'POST',
     url: 'https://api.twitch.tv/kraken/oauth2/token',
@@ -44,6 +44,7 @@ function twitch(req, res, next) {
           displayName: req._profile.display_name
         });
       }
+      user.language = req._profile.language;
       user.mature = req._profile.mature;
       user.games = req._profile.game;
       user.displayImage = req._profile.logo;

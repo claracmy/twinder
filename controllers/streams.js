@@ -1,4 +1,3 @@
-const Stream = require('../models/stream');
 const rp = require('request-promise');
 
 function streamIndex(req, res, next) {
@@ -6,21 +5,32 @@ function streamIndex(req, res, next) {
   let language = '';
   let followers = '';
   let mature = '';
+  const userId = req.headers.userid;
 
   return rp({
     method: 'GET',
-    url: 'https://api.twitch.tv/kraken/channel',
-    json: true,
-    headers: {
-      'User-Agent': 'Request-Promise',
-      'Authorization': `OAuth ${req.headers.twitchtoken}`
-    }
+    url: `http://localhost:8000/api/users/${userId}`,
+    json: true
   })
+    .then(user => {
+      language = user.language;
+      game = user.game;
+
+      return rp({
+        method: 'GET',
+        url: 'https://api.twitch.tv/kraken/channel',
+        json: true,
+        headers: {
+          'User-Agent': 'Request-Promise',
+          'Authorization': `OAuth ${req.headers.twitchtoken}`
+        }
+      });
+    })
     .then(profile => {
       mature = profile.mature;
       followers = profile.followers;
-      game = profile.game;
-      language = profile.language;
+      language = language ? language: profile.language;
+      game = game ? game: profile.game;
 
       return rp({
         method: 'GET',

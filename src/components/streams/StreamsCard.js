@@ -19,12 +19,11 @@ class StreamsCard extends React.Component {
       .catch(err => console.log(err));
   }
 
-
   handleLike = () => {
     const i = this.state.i;
     this.state.user.likes.push(this.props.streams[i].channel.display_name);
     Axios
-      .patch(`/api/users/${this.state.user._id}`, {
+      .put(`/api/users/${this.state.user._id}`, {
         likes: this.state.user.likes
       })
       .catch(err => console.log(err));
@@ -37,7 +36,7 @@ class StreamsCard extends React.Component {
     const i = this.state.i;
     this.state.user.dislikes.push(this.props.streams[i].channel.display_name);
     Axios
-      .patch(`/api/users/${this.state.user._id}`, {
+      .put(`/api/users/${this.state.user._id}`, {
         dislikes: this.state.user.dislikes
       })
       .catch(err => console.log(err));
@@ -60,8 +59,8 @@ class StreamsCard extends React.Component {
           <p>Channel views: {this.props.streams[i].channel.views}</p>
           <p>Stream language: {this.props.streams[i].channel.language}</p>
           <p>Mature: {`${this.props.streams[i].channel.mature}`} </p>
-          <button onClick={ this.handleLike }>Yay</button>
-          <button onClick={ this.handleDislike }>Nay</button>
+          <button className="pure-button" onClick={ this.handleLike }>Yay</button>
+          <button className="pure-button" onClick={ this.handleDislike }>Nay</button>
         </div>
       </div>
     );

@@ -1,5 +1,6 @@
 import React from 'react';
 import Axios from 'axios';
+import { Link } from 'react-router-dom';
 
 class UsersShow extends React.Component {
 
@@ -16,21 +17,27 @@ class UsersShow extends React.Component {
       .catch(err => console.log(err));
   }
 
+  resetDislikes = () => {
+    Axios
+      .patch(`/api/users/${this.state.user._id}`, {
+        dislikes: []
+      })
+      .then(res => this.setState({ user: res.data.user }))
+      .catch(err => console.log(err));
+  }
+
 
   render() {
     return(
       <div>
         <h2>{ this.state.user.displayName }</h2>
         <img src={ this.state.user.displayImage } />
-        <h2>Games</h2>
-        { this.state.user.games && this.state.user.games.map((game, i) =>
-          <li key={i}>{game}</li>
-        )}
+        <h2>Games: { this.state.user.games }</h2>
         <ul>
           <h2>Yays</h2>
           {this.state.user.likes && this.state.user.likes.map((streamer, i) => {
             return(
-              <li key={i}>{streamer}</li>
+              <li key={i}><a href={`https://www.twitch.tv/${streamer}`} target="_blank">{streamer}</a></li>
             );
           })}
         </ul>
@@ -42,6 +49,8 @@ class UsersShow extends React.Component {
             );
           })}
         </ul>
+        <button onClick={this.resetDislikes}>Reset Nays</button>
+        <Link to={`/users/${this.state.user._id}/edit`} className="pure-button">Edit Profile</Link>
       </div>
     );
   }
