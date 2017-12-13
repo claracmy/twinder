@@ -31,7 +31,6 @@ function streamIndex(req, res, next) {
       followers = profile.followers;
       language = language ? language: profile.language;
       game = game ? game: profile.game;
-
       return rp({
         method: 'GET',
         url: `https://api.twitch.tv/kraken/streams/?language=${language}&game=${game}&limit=100`,

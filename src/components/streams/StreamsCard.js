@@ -23,7 +23,7 @@ class StreamsCard extends React.Component {
     const i = this.state.i;
     this.state.user.likes.push(this.props.streams[i].channel.display_name);
     Axios
-      .put(`/api/users/${this.state.user._id}`, {
+      .patch(`/api/users/${this.state.user._id}`, {
         likes: this.state.user.likes
       })
       .catch(err => console.log(err));
@@ -36,7 +36,7 @@ class StreamsCard extends React.Component {
     const i = this.state.i;
     this.state.user.dislikes.push(this.props.streams[i].channel.display_name);
     Axios
-      .put(`/api/users/${this.state.user._id}`, {
+      .patch(`/api/users/${this.state.user._id}`, {
         dislikes: this.state.user.dislikes
       })
       .catch(err => console.log(err));

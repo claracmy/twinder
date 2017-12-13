@@ -48,6 +48,8 @@ function twitch(req, res, next) {
       user.mature = req._profile.mature;
       user.games = req._profile.game;
       user.displayImage = req._profile.logo;
+      user.followerCeiling = 1.3;
+      user.followerFloor = 0.8;
       return user.save();
     })
     .then(user => {

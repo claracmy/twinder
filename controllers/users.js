@@ -19,29 +19,18 @@ function usersShow(req, res, next) {
     .catch(next);
 }
 
-function usersUpdate(req, res, next) {
+function usersPatch(req, res, next) {
   User
-    .findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true })
+    .findByIdAndUpdate(req.params.id, { $set: req.body }, { new: true })
     .exec()
     .then(user => {
-      if(!user) return res.status(404).json({ message: 'User not found.'});
       return res.status(200).json({ user });
     })
     .catch(next);
 }
-//
-// function usersPatch(req, res, next) {
-//   User
-//     .findByIdAndUpdate(req.params.id, {$set: req.body}, { new: true })
-//     .exec()
-//     .then(user => {
-//       return res.status(200).json({ user });
-//     })
-//     .catch(next);
-// }
 
 module.exports = {
   index: usersIndex,
   show: usersShow,
-  update: usersUpdate
+  patch: usersPatch
 };

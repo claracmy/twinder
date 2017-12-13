@@ -1,0 +1,60 @@
+@import '../variables';
+
+.users-form {
+  padding: 5%;
+  font-family: $font-p;
+  font-size: $font-size-p;
+  font-weight: 700;
+  text-align: center;
+
+  label {
+    display: block;
+    margin-bottom: 5px;
+    color: blue;
+  }
+
+  hr {
+    height: 10px;
+    visibility: hidden;
+  }
+
+  form {
+    width: 80%;
+    margin: 0 auto;
+  }
+
+  button {
+    display: block;
+    margin: 0 auto;
+  }
+}
+
+.form-control {
+  margin: 0 auto;
+  display: inline-block;
+  padding: .4em 1.3em;
+  text-align: center;
+  width: 100%;
+  border: none;
+  &:focus {
+    outline: none;
+  }
+}
+
+@mixin step2v2( $width, $color, $bgcolor ) {
+  box-shadow:
+    $width 0 $bgcolor,
+    -$width 0 $bgcolor,
+    0 (-$width) $bgcolor,
+    0 $width $bgcolor,
+    2*$width 0 $color,
+    -2*$width 0 $color,
+    0 (-2*$width) $color,
+    0 2*$width $color,
+    0 0 0 $width $color;
+  margin: 2*$width auto;
+}
+
+.form-control {
+  @include step2v2( 4px, blue, white );
+}

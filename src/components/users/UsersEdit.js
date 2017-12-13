@@ -10,8 +10,8 @@ class UsersEdit extends React.Component{
       games: '',
       mature: '',
       language: '',
-      followerCeiling: 1.3,
-      followerFloor: 0.8
+      followerCeiling: '',
+      followerFloor: ''
     }
   }
 
@@ -33,7 +33,7 @@ class UsersEdit extends React.Component{
   handleSubmit = (e) => {
     e.preventDefault();
     Axios
-      .put(`/api/users/${this.props.match.params.id}`, this.state.user, {
+      .patch(`/api/users/${this.props.match.params.id}`, this.state.user, {
         headers: {'Authorization': `Bearer ${Auth.getToken()}`}
       })
       .then(res => this.props.history.push(`/users/${res.data.user._id}`))

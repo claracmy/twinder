@@ -26,11 +26,9 @@ class StreamsIndex extends React.Component {
     Axios
       .get(`/api/users/${userId}`)
       .then(res => {
-        //If user has set a ceiling or a floor, set the values.
         followerCeiling = res.data.followerCeiling;
         followerFloor = res.data.followerFloor;
         likes = res.data.likes.concat(res.data.dislikes);
-
         return Axios
           .get('/api/streams', {
             headers: {
@@ -40,9 +38,8 @@ class StreamsIndex extends React.Component {
           });
       })
       .then(res => {
-        //If user hasn't set a ceiling or floor, use default numbers
-        followerCeiling = followerCeiling ? followerCeiling : Math.ceil(res.data.followers * 1.3);
-        followerFloor = followerFloor ? followerFloor : Math.ceil(res.data.followers * 0.8);
+        followerCeiling = Math.ceil(res.data.followers * followerCeiling);
+        followerFloor = Math.ceil(res.data.followers * followerFloor);
         const mature = res.data.mature;
 
         //Filter streams by followers, maturity, and likes or dislikes
@@ -70,7 +67,7 @@ class StreamsIndex extends React.Component {
     const streams = _.shuffle(this.state.streams);
     return(
       <div className="streams-index">
-        <h1>Streams Index</h1>
+        <h1>Your Matches</h1>
         {/* <SearchBar handleSearch={ this.handleSearch } /> */}
         {/* { (streams.length === 0) && <p>You do not have any games added yet!</p> } */}
         <p>Number of results: { streams.length }</p>
