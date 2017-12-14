@@ -25,15 +25,20 @@ const languages = [
   'sk'
 ];
 
+let games = [];
+
 class UsersForm extends React.Component {
+
 
   componentWillMount() {
     Axios
       .get('/api/games')
-      .then(res => console.log(res))
+      .then(res => {
+        games = res.data.map(game => game.name);
+        console.log(games);
+      })
       .catch(err => console.log(err));
   }
-
   render() {
     const { handleSubmit, handleChange, user } = this.props;
 
@@ -43,7 +48,15 @@ class UsersForm extends React.Component {
           <h2>{ user.displayName }</h2>
 
           <label htmlFor="games">GAME</label>
-          <input className="form-control" type="text" name="games" id="games" value={ user.games } onChange={ handleChange } /><hr />
+          <Autosuggest
+            datalist={games}
+            className="form-control"
+            name="games"
+            id="games"
+            onChange={(games) => handleChange({ target: { name: 'games', value: games }})}
+            value={ user.games }
+            showToggle={false}
+          /><hr />
 
           <label htmlFor="language">LANGUAGE</label>
           <Autosuggest

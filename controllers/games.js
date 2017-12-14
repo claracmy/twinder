@@ -4,7 +4,7 @@ function gamesIndex (req, res, next) {
   Game
     .find()
     .exec()
-    .then(res => res.status(200).json(res))
+    .then(games => res.status(200).json(games))
     .catch(next);
 }
 
