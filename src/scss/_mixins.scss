@@ -1,0 +1,48 @@
+@mixin step2v2( $width, $color, $bgcolor ) {
+  box-shadow:
+    $width 0 $bgcolor,
+    -$width 0 $bgcolor,
+    0 (-$width) $bgcolor,
+    0 $width $bgcolor,
+    2*$width 0 $color,
+    -2*$width 0 $color,
+    0 (-2*$width) $color,
+    0 2*$width $color,
+    0 0 0 $width $color;
+  margin: 2*$width auto;
+}
+
+@mixin step4( $width, $color, $bgcolor ) {
+  box-shadow:
+    $width 0 $bgcolor,
+    -$width 0 $bgcolor,
+    0 (-$width) $bgcolor,
+    0 $width $bgcolor,
+    2*$width 0 $bgcolor,
+    -2*$width 0 $bgcolor,
+    0 (-2*$width) $bgcolor,
+    0 2*$width $bgcolor,
+    0 0 0 $width $bgcolor,
+    3*$width 0 $bgcolor,
+    -3*$width 0 $bgcolor,
+    0 3*$width $bgcolor,
+    0 (-3*$width) $bgcolor,
+    0 (-$width) 0 $width $bgcolor,
+    0 $width 0 $width $bgcolor,
+    $width 0 0 $width $bgcolor,
+    -$width 0 0 $width $bgcolor,
+    4*$width 0 $color,
+    -4*$width 0 $color,
+    0 (-4*$width) $color,
+    0 4*$width $color,
+    2*$width 0 0 $width $color,
+    -2*$width 0 0 $width $color,
+    0 2*$width 0 $width $color,
+    0 (-2*$width) 0 $width $color,
+    0 0 0 2*$width $color;
+    margin: 4*$width auto;
+}
+
+.frame-2 {
+  @include step2v2(2px, black, transparent);
+}

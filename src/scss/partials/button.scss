@@ -1,5 +1,31 @@
+@import './mixins';
+
 button, a {
   &:hover {
     cursor: pointer;
   }
+}
+
+button {
+  padding: 10px 20px;
+  @include step2v2( 4px, lighten($color-primary, 10%) , lighten($color-primary,20%));
+  background-color: transparent;
+  border: none;
+  &:hover {
+    background-color: lighten($color-primary,20%);
+  }
+  &:active {
+    background-color: lighten($color-primary, 10%);
+  }
+  &:focus {
+    outline: none;
+  }
+}
+
+
+.button-wrapper {
+  display: block;
+  clear:both;
+  margin: 0 auto;
+  text-align: center;
 }

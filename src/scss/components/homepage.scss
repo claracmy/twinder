@@ -5,22 +5,7 @@
   background-image: url('https://imgur.com/aECsZYZ.png');
   background-repeat: no-repeat;
   background-size: cover;
-  height: 800px;
-
-  button {
-    background-color: transparent;
-    margin-left: 43%;
-    border: none;
-    background-image: url('https://imgur.com/al2COtX.png');
-    background-repeat: no-repeat;
-    background-size: contain;
-    padding: 20px 30px 20px 25px;
-    &:active, &:hover {
-      background-image: url('https://imgur.com/s0JJf6c.png');
-      background-repeat: no-repeat;
-      background-size: contain;
-    }
-  }
+  height: 100vh;
 
   h1 {
     padding-top: 15%;
@@ -29,7 +14,49 @@
   a {
     color: $color-accent;
     text-align: center;
-    font-size: $font-size-p;
+    font-size: 10px;
     text-decoration: none;
   }
+}
+
+.cta-button {
+  width: 200px;
+  text-align: center;
+  background-color: transparent;
+  display: block;
+  margin: 0 auto;
+  background-image: url('https://imgur.com/al2COtX.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  padding: 14px 30px 20px 25px;
+  &:active {
+    background-image: url('https://imgur.com/ammDWNr.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+}
+
+.floating{
+    -webkit-animation-name: Floatingx;
+    -webkit-animation-duration: 3s;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: ease-in-out;
+    -moz-animation-name: Floating;
+    -moz-animation-duration: 3s;
+    -moz-animation-iteration-count: infinite;
+    -moz-animation-timing-function: ease-in-out;
+    margin-top: 5px;
+
+}
+
+@-webkit-keyframes Floatingx{
+    from {-webkit-transform:translate(0, 0px);}
+    65% {-webkit-transform:translate(0, 15px);}
+    to {-webkit-transform: translate(0, -0px);    }
+}
+
+@-moz-keyframes Floating{
+    from {-moz-transform:translate(0, 0px);}
+    65% {-moz-transform:translate(0, 15px);}
+    to {-moz-transform: translate(0, -0px);}
 }

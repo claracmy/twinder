@@ -1,9 +1,11 @@
 @import './variables';
 @import './partials/navbar';
 @import './partials/typography';
+@import './partials/spinner';
 @import './partials/button';
 @import './components/homepage';
-@import './components/streams-index';
+@import './components/streams-card';
+@import './components/users-show';
 @import './components/users-form';
 
 * {
@@ -13,9 +15,16 @@
 html, body {
   padding: 0;
   margin: 0;
-  background-color: grey;
+  min-height: 100%;
 }
 
-li {
-  list-style: none;
+body {
+  background-image:url('https://imgur.com/M4kQJeZ.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.container {
+  padding: 7%;
 }

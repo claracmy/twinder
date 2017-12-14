@@ -1,0 +1,71 @@
+@import '../mixins';
+
+.streams-card {
+  text-align: center;
+  padding: 20px;
+  background-color: #ccc;
+  @include step4( 5px, black, #ccc );
+}
+
+.stream-name {
+  background-color: $color-primary;
+  width: 800px;
+  @include step2v2(5px, black, $color-primary);
+  p {
+    color: white;
+  }
+}
+
+.stream-info {
+  @include step2v2(5px, black, #ddd);
+  width: 800px;
+
+  background-color: #ddd;
+  img {
+    float: left;
+    width: 200px;
+  }
+}
+
+.stream-text {
+  float: right;
+  text-align: left;
+}
+
+.custom-button {
+  width: 84px;
+  height: 84px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  display: inline-block;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.stream-title {
+  font-size: 18px;
+  line-height: 24px;
+}
+
+.stream-info-inner {
+  padding: 0 20px;
+}
+
+.like-button {
+  background-image: url('https://imgur.com/bfJJSde.png');
+  margin: 0 10px;
+}
+.dislike-button {
+  background-image: url('https://imgur.com/6ZVfaKf.png');
+  margin: 0 10px;
+}
+
+.streams {
+  margin: 0 auto;
+}
+
+.rec {
+  color: red;
+}

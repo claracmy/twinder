@@ -12,9 +12,9 @@ class Homepage extends React.Component {
   render() {
     return(
       <div className="hero-container">
-        <h1>TWINDER</h1>
+        <h1 className="floating">TWINDER</h1>
         <h2>Network with Streamers Like You</h2>
-        <button><OAuthButton getUser={ this.getUser }><i className="fa fa-twitch" aria-hidden="true"></i>Login with Twitch</OAuthButton></button>
+        <div className="cta-button"><OAuthButton getUser={ this.getUser }><i className="fa fa-twitch" aria-hidden="true"></i>Login with Twitch</OAuthButton></div>
       </div>
     );
   }

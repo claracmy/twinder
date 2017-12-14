@@ -1,15 +1,17 @@
 import React from 'react';
 import Axios from 'axios';
+import Spinner from 'react-spinkit';
 import _ from 'lodash';
 
-// import SearchBar from '../utility/SearchBar';
 import StreamsCard from '../streams/StreamsCard';
 
 class StreamsIndex extends React.Component {
   state = {
     streams: [],
     query: '',
-    user: {}
+    user: {},
+    isLoaded: false,
+    message: ''
   }
 
   handleSearch = (e) => {
@@ -41,36 +43,41 @@ class StreamsIndex extends React.Component {
         followerCeiling = Math.ceil(res.data.followers * followerCeiling);
         followerFloor = Math.ceil(res.data.followers * followerFloor);
         const mature = res.data.mature;
+        let filterByLikes = [];
+
+        if (res.data.game === null) this.setState({ message: 'No results returned! Try editing your profile.'});
 
         //Filter streams by followers, maturity, and likes or dislikes
         const array = [];
         res.data.streamResults.forEach(obj => array.push(obj.streams));
         const merged = [].concat.apply([], array);
-        const filterByFollowersAndMature = merged.filter(stream => stream.channel.followers <= followerCeiling && stream.channel.followers >= followerFloor && stream.channel.mature === mature);
-        const filterByLikes = filterByFollowersAndMature.filter(stream => {
-          return likes.indexOf(stream.channel.display_name) === -1;
-        });
+        const filterByFollowers = merged.filter(stream => stream.channel.followers <= followerCeiling && stream.channel.followers >= followerFloor);
 
-        this.setState({ streams: filterByLikes });
+        //If streamer is mature, return both types of streams. If streamer is PG, return only PG.
+        if (mature === false) {
+          const filterByMature = filterByFollowers.filter(stream => stream.channel.mature === mature);
+          filterByLikes = filterByMature.filter(stream => {
+            return likes.indexOf(stream.channel.display_name) === -1;
+          });
+        } else {
+          filterByLikes = filterByFollowers.filter(stream => {
+            return likes.indexOf(stream.channel.display_name) === -1;
+          });
+        }
+
+        this.setState({ streams: filterByLikes, isLoaded: true });
 
       })
       .catch(err => console.log(err));
   }
 
-  // sort = () => {
-  //   const orderedStreams = _.orderBy(this.state.streams, ['channel.followers'], ['asc']);
-  //   const regex = new RegExp(this.state.query, 'i');
-  //   return _.filter(orderedStreams, (stream) => (regex.test(stream.game)));
-  // }
-
   render() {
     const streams = _.shuffle(this.state.streams);
     return(
-      <div className="streams-index">
-        <h1>Your Matches</h1>
-        {/* <SearchBar handleSearch={ this.handleSearch } /> */}
-        {/* { (streams.length === 0) && <p>You do not have any games added yet!</p> } */}
-        <p>Number of results: { streams.length }</p>
+      <div className="container">
+        { this.state.message && <p className="message">{ this.state.message }</p>}
+        { !this.state.isLoaded && <div className="spinner-wrapper"><p>INSERTING COINS</p><Spinner name="three-bounce" color="gold" /></div> }
+        {/* { (streams.length === 0) && <h2>No results! Try editing your profile.</h2> } */}
         { streams[0] && <StreamsCard streams={ streams }/>}
       </div>
     );

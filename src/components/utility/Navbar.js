@@ -29,13 +29,17 @@ class Navbar extends React.Component {
   render() {
     return(
       <nav>
-        <ul>
-          <Link to="/">Twinder</Link>
-          <Link to="/streams">Browse Streams</Link>
-          { !Auth.isAuthenticated() && <OAuthButton getUser={ this.getUser }/> }
-          { Auth.isAuthenticated() && this.state.user.displayName && <Link to={`/users/${this.state.user._id}`}>{this.state.user.displayName}</Link> }
-          { Auth.isAuthenticated() && <a onClick={ this.logout }>Logout</a> }
-        </ul>
+        <div className="navbar">
+          <ul>
+            <Link to="/">Twinder</Link>
+            { Auth.isAuthenticated() && <Link to="/streams">My Matches</Link> }
+            <div className="pull-right">
+              { !Auth.isAuthenticated() && <OAuthButton getUser={ this.getUser }/> }
+              { Auth.isAuthenticated() && this.state.user.displayName && <Link to={`/users/${this.state.user._id}`}>{this.state.user.displayName}</Link> }
+              { Auth.isAuthenticated() && <a onClick={ this.logout }>Logout</a> }
+            </div>
+          </ul>
+        </div>
       </nav>
     );
   }

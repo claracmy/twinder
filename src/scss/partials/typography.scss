@@ -37,10 +37,38 @@ h2 {
   font-family: $font-h2;
 }
 
+a {
+  font-family: $font-p;
+  text-decoration: none;
+  color: $color-accent;
+  &:hover {
+    text-decoration: none;
+    color: $color-primary;
+  }
+}
+
+li {
+  font-family: $font-p;
+  font-size: $font-size-p;
+  list-style: none;
+}
+
 p {
   font-family: $font-p;
 }
 
+label, input {
+  font-family: $font-p;
+  font-size: $font-size-p;
+  font-weight: 700;
+  text-align: center;
+}
+
 .fa {
   margin-right: 6px;
+}
+
+.message {
+  text-align: center;
+  margin-top: 25%;
 }

@@ -28,7 +28,7 @@ class StreamsCard extends React.Component {
       })
       .catch(err => console.log(err));
 
-    // window.open(`https://www.twitch.tv/${this.props.streams[i].channel.display_name}`, '_blank');
+    window.open(`https://www.twitch.tv/${this.props.streams[i].channel.display_name}`, '_blank');
     this.setState(prevState => ({ i: prevState.i + 1 }));
   }
 
@@ -48,19 +48,32 @@ class StreamsCard extends React.Component {
     const i = this.state.i;
     return(
       <div className="pure-g">
-        <div className="pure-u-4-5 streams">
-          <iframe src={`http://player.twitch.tv/?channel=${this.props.streams[i].channel.display_name}&muted=true`} height="480" width="640" frameBorder="0" scrolling="no" allowFullScreen="true">
-          </iframe>
-          <p>Streamer name: {this.props.streams[i].channel.display_name}</p>
-          <p>Game: {this.props.streams[i].game}</p>
-          <p>Current viewers: {this.props.streams[i].viewers}</p>
-          <p>Stream title: {this.props.streams[i].channel.status}</p>
-          <p>Channel followers: { this.props.streams[i].channel.followers}</p>
-          <p>Channel views: {this.props.streams[i].channel.views}</p>
-          <p>Stream language: {this.props.streams[i].channel.language}</p>
-          <p>Mature: {`${this.props.streams[i].channel.mature}`} </p>
-          <button className="pure-button" onClick={ this.handleLike }>Yay</button>
-          <button className="pure-button" onClick={ this.handleDislike }>Nay</button>
+        <div className="pure-u-4-5 streams-card">
+          <div className="pure-u-4-5 streams">
+            <p className="stream-title"><i className="fa fa-circle rec"></i> NOW PLAYING: {this.props.streams[i].channel.status}</p>
+            <iframe className="frame-2" src={`http://player.twitch.tv/?channel=${this.props.streams[i].channel.display_name}&muted=true`} height="450" width="800" frameBorder="0" scrolling="no" allowFullScreen="true">
+            </iframe>
+            <div className="stream-info">
+              <div className="stream-name">
+                <p>{this.props.streams[i].channel.display_name}</p>
+              </div>
+              <div className="stream-info-inner">
+                <img className="frame-2" src={ this.props.streams[i].channel.logo} />
+                <div className="stream-text">
+                  <p>{this.props.streams[i].game}</p>
+                  <p><i className="fa fa-user"></i>{this.props.streams[i].viewers}</p>
+                  <p><i className="fa fa-heart"></i>{ this.props.streams[i].channel.followers}</p>
+                  <p><i className="fa fa-eye"></i>{this.props.streams[i].channel.views}</p>
+                  <p><i className="fa fa-globe"></i>{this.props.streams[i].channel.language}</p>
+                  <p>Mature: {`${this.props.streams[i].channel.mature}`} </p>
+                </div>
+                <div className="button-wrapper">
+                  <div className="custom-button like-button" onClick={ this.handleLike }></div>
+                  <div className="custom-button dislike-button" onClick={ this.handleDislike }>   </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     );

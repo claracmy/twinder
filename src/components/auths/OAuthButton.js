@@ -1,5 +1,6 @@
 import React from 'react';
 import Axios from 'axios';
+import { withRouter } from 'react-router-dom';
 
 import Auth from '../../lib/Auth';
 import OAuth from '../../lib/OAuth';
@@ -18,6 +19,7 @@ class OAuthButton extends React.Component {
         localStorage.setItem('twitchToken', res.data.twitchToken);
         Auth.setToken(res.data.token);
         this.props.getUser(res.data.user);
+        this.props.history.push('/streams');
       })
       .catch(err => console.log(err));
   }
@@ -29,4 +31,4 @@ class OAuthButton extends React.Component {
   }
 }
 
-export default OAuthButton;
+export default withRouter(OAuthButton);

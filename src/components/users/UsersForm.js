@@ -1,30 +1,68 @@
 import React from 'react';
+import Autosuggest from 'react-bootstrap-autosuggest';
 
-function UsersForm({ handleSubmit, handleChange, user }) {
-  return (
-    <div className="users-form">
-      <form onSubmit={ handleSubmit }>
-        <h2>{ user.displayName }</h2>
+const languages = [
+  'en',
+  'zh',
+  'ja',
+  'ko',
+  'es',
+  'pt',
+  'de',
+  'pl',
+  'ru',
+  'fr',
+  'it',
+  'sv',
+  'no',
+  'da',
+  'nl',
+  'fi',
+  'tr',
+  'cs',
+  'hu',
+  'sk'
+];
 
-        <label htmlFor="games">Game</label>
-        <input className="form-control" type="text" name="games" id="games" value={ user.games } onChange={ handleChange } /><hr />
+class UsersForm extends React.Component {
 
-        <label htmlFor="language">Language</label>
-        <input className="form-control" type="text" name="language" id="language" value={ user.language } onChange={ handleChange } /><hr />
+  render() {
+    const { handleSubmit, handleChange, user } = this.props;
 
-        <label htmlFor="mature">Mature</label>
-        <input className="form-control" type="boolean" name="mature" id="mature" value={ user.mature } onChange={ handleChange } /><hr />
+    return (
+      <div className="users-form container">
+        <form onSubmit={ handleSubmit }>
+          <h2>{ user.displayName }</h2>
 
-        <label htmlFor="followerCeiling">Follower Ceiling</label>
-        <input className="form-control" type="Number" name="followerCeiling" id="followerCeiling" value={ user.followerCeiling } onChange={ handleChange } /><hr />
+          <label htmlFor="games">GAME</label>
+          <input className="form-control" type="text" name="games" id="games" value={ user.games } onChange={ handleChange } /><hr />
 
-        <label htmlFor="followerFloor">Follower Floor</label>
-        <input className="form-control" type="Number" name="followerFloor" id="followerFloor" value={ user.followerFloor } onChange={ handleChange } /><hr />
+          <label htmlFor="language">LANGUAGE</label>
+          <Autosuggest
+            datalist={languages}
+            className="form-control"
+            name="language"
+            id="language"
+            onChange={(language) => handleChange({ target: { name: 'language', value: language }})}
+            value={ user.language }
+            showToggle={false}
+          /><hr />
 
-        <button className="pure-button">Save</button>
-      </form>
-    </div>
-  );
+          <label htmlFor="mature">MATURE</label>
+          <input className="form-control" type="Boolean" name="mature" id="mature" value={ user.mature } onChange={ handleChange } />
+          <hr />
+
+          <label htmlFor="followerCeiling">FOLLOWER CEILING</label>
+          <input className="form-control" type="Number" name="followerCeiling" id="followerCeiling" value={ user.followerCeiling } onChange={ handleChange } /><hr />
+
+          <label htmlFor="followerFloor">FOLLOWER FLOOR</label>
+          <input className="form-control" type="Number" name="followerFloor" id="followerFloor" value={ user.followerFloor } onChange={ handleChange } /><hr />
+
+          <button><p>Save</p></button>
+        </form>
+      </div>
+    );
+  }
 }
 
 export default UsersForm;

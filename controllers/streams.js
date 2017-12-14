@@ -14,7 +14,8 @@ function streamIndex(req, res, next) {
   })
     .then(user => {
       language = user.language;
-      game = user.game;
+      game = user.games;
+      mature = user.mature;
 
       return rp({
         method: 'GET',
@@ -27,8 +28,8 @@ function streamIndex(req, res, next) {
       });
     })
     .then(profile => {
-      mature = profile.mature;
       followers = profile.followers;
+      mature = mature? mature: profile.mature;
       language = language ? language: profile.language;
       game = game ? game: profile.game;
       return rp({
@@ -61,7 +62,7 @@ function streamIndex(req, res, next) {
       return Promise.all(allPages);
     })
     .then(streamResults => {
-      return res.json({streamResults, followers, mature});
+      return res.json({streamResults, followers, mature, game});
     })
     .catch(next);
 }

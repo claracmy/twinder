@@ -1,0 +1,57 @@
+@import '../mixins';
+@import '../variables';
+
+.users-show-inner {
+  background-color: #ccc;
+  min-height: 80vh;
+  margin: 0 auto;
+  padding: 40px;
+
+  li {
+    line-height: 20px;
+  }
+
+  a {
+    color: $color-primary;
+    &:hover {
+      color: $color-accent;
+    }
+  }
+}
+
+.users-show-text {
+  padding: 0 30px 30px 30px;
+}
+
+.like-logo {
+  background-image: url('https://imgur.com/dQXDHsH.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: inline-block;
+  width: 38px;
+  height: 34px;
+  margin-right: 6px;
+}
+
+.dislike-logo {
+  background-image: url('https://imgur.com/WE3COnX.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: inline-block;
+  width: 38px;
+  height: 34px;
+  margin-right: 6px;
+}
+
+.autosuggest {
+  margin: 8px 0;
+}
+
+.edit-profile {
+  a {
+    color: black;
+    &:hover {
+      color: black;
+    }
+  }
+}
