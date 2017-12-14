@@ -1,5 +1,6 @@
 import React from 'react';
 import Autosuggest from 'react-bootstrap-autosuggest';
+import Axios from 'axios';
 
 const languages = [
   'en',
@@ -25,6 +26,13 @@ const languages = [
 ];
 
 class UsersForm extends React.Component {
+
+  componentWillMount() {
+    Axios
+      .get('/api/games')
+      .then(res => console.log(res))
+      .catch(err => console.log(err));
+  }
 
   render() {
     const { handleSubmit, handleChange, user } = this.props;

@@ -77,7 +77,6 @@ class StreamsIndex extends React.Component {
       <div className="container">
         { this.state.message && <p className="message">{ this.state.message }</p>}
         { !this.state.isLoaded && <div className="spinner-wrapper"><p>INSERTING COINS</p><Spinner name="three-bounce" color="gold" /></div> }
-        {/* { (streams.length === 0) && <h2>No results! Try editing your profile.</h2> } */}
         { streams[0] && <StreamsCard streams={ streams }/>}
       </div>
     );
