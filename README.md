@@ -45,6 +45,7 @@ Overall 8 bit styling to resonate with gamer's nostalgia.
 - Home drawn pixel buttons
 - Fonts: 8-bit-wonder, Press Ready, thin-pixel-7
 - Background credits [here](https://imgur.com/gallery/VZ9H2)
+- Pixel border credits [here](https://codepen.io/albpara/pen/xDBvc?q=8+bit&limit=all&type=type-pens)
 
 ## Important
 
