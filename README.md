@@ -37,7 +37,7 @@ Day 7 - Styling. Loading spinner. Autosuggest games and language on forms.
 ![Homepage](https://imgur.com/xs7tQ1F.png)
 ![Stream Cards](https://imgur.com/W1WA20s.png)
 ![User Profile](https://imgur.com/bcVPuPD.png)
-![User Edit](https://imgur.com/J8dLNTZ.png)
+
 
 ## Styling 
 
