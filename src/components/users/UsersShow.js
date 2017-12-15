@@ -1,5 +1,6 @@
 import React from 'react';
 import Axios from 'axios';
+import Auth from '../../lib/Auth';
 import { Link } from 'react-router-dom';
 
 class UsersShow extends React.Component {
@@ -10,7 +11,9 @@ class UsersShow extends React.Component {
 
   componentWillMount() {
     Axios
-      .get(`/api/users/${this.props.match.params.id}`)
+      .get(`/api/users/${this.props.match.params.id}`, {
+        headers: { Authorization: `Bearer ${Auth.getToken()}` }
+      })
       .then(res => {
         this.setState({ user: res.data });
       })
@@ -21,6 +24,8 @@ class UsersShow extends React.Component {
     Axios
       .patch(`/api/users/${this.state.user._id}`, {
         likes: []
+      }, {
+        headers: { Authorization: `Bearer ${Auth.getToken()}` }
       })
       .then(res => this.setState({ user: res.data.user }))
       .catch(err => console.log(err));
@@ -30,6 +35,8 @@ class UsersShow extends React.Component {
     Axios
       .patch(`/api/users/${this.state.user._id}`, {
         dislikes: []
+      }, {
+        headers: { Authorization: `Bearer ${Auth.getToken()}` }
       })
       .then(res => this.setState({ user: res.data.user }))
       .catch(err => console.log(err));

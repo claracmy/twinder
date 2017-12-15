@@ -1,5 +1,7 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
+import ProtectedRoute from './ProtectedRoute';
+import NoRoute from './NoRoute';
 
 import Homepage from '../Homepage';
 import UsersShow from '../users/UsersShow';
@@ -10,9 +12,10 @@ const Routes = () => {
   return(
     <Switch>
       <Route exact path="/" component={ Homepage } />
-      <Route path="/users/:id/edit" component={ UsersEdit } />
-      <Route path="/users/:id" component={ UsersShow } />
-      <Route path="/streams" component={ StreamsIndex } />
+      <ProtectedRoute path="/users/:id/edit" component={ UsersEdit } />
+      <ProtectedRoute path="/users/:id" component={ UsersShow } />
+      <ProtectedRoute path="/streams" component={ StreamsIndex } />
+      <Route component={NoRoute} />
     </Switch>
   );
 };

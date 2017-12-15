@@ -56,10 +56,16 @@
 .like-button {
   background-image: url('https://imgur.com/bfJJSde.png');
   margin: 0 10px;
+  &:active {
+    background-image: url('https://imgur.com/UGnQ85q.png');
+  }
 }
 .dislike-button {
   background-image: url('https://imgur.com/6ZVfaKf.png');
   margin: 0 10px;
+  &:active {
+    background-image: url('https://imgur.com/XVufs0x.png');
+  }
 }
 
 .streams {

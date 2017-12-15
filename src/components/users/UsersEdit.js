@@ -18,7 +18,9 @@ class UsersEdit extends React.Component{
 
   componentDidMount() {
     Axios
-      .get(`/api/users/${this.props.match.params.id}`)
+      .get(`/api/users/${this.props.match.params.id}`, {
+        headers: { Authorization: `Bearer ${Auth.getToken()}` }
+      })
       .then(res => {
         this.setState({ user: res.data });
       })
@@ -29,7 +31,6 @@ class UsersEdit extends React.Component{
     const user = Object.assign({}, this.state.user, { [name]: value });
     const errors = Object.assign({}, this.state.errors, {[name]: '' });
     this.setState({ user, errors });
-    console.log(this.state.errors);
   }
 
   handleSubmit = (e) => {

@@ -4,6 +4,7 @@ import Spinner from 'react-spinkit';
 import _ from 'lodash';
 
 import StreamsCard from '../streams/StreamsCard';
+import Auth from '../../lib/Auth';
 
 class StreamsIndex extends React.Component {
   state = {
@@ -26,7 +27,9 @@ class StreamsIndex extends React.Component {
     let followerFloor = '';
 
     Axios
-      .get(`/api/users/${userId}`)
+      .get(`/api/users/${userId}`, {
+        headers: { Authorization: `Bearer ${Auth.getToken()}` }
+      })
       .then(res => {
         followerCeiling = res.data.followerCeiling;
         followerFloor = res.data.followerFloor;
@@ -34,6 +37,7 @@ class StreamsIndex extends React.Component {
         return Axios
           .get('/api/streams', {
             headers: {
+              'Authorization': `Bearer ${Auth.getToken()}`,
               'twitchToken': localStorage.getItem('twitchToken'),
               'userId': userId
             }

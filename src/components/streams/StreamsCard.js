@@ -12,7 +12,9 @@ class StreamsCard extends React.Component {
 
   componentWillMount() {
     Axios
-      .get(`/api/users/${Auth.getPayload().userId}`)
+      .get(`/api/users/${Auth.getPayload().userId}`, {
+        headers: { Authorization: `Bearer ${Auth.getToken()}` }
+      })
       .then(res => {
         this.setState({ user: res.data });
       })
@@ -25,6 +27,8 @@ class StreamsCard extends React.Component {
     Axios
       .patch(`/api/users/${this.state.user._id}`, {
         likes: this.state.user.likes
+      }, {
+        headers: { Authorization: `Bearer ${Auth.getToken()}` }
       })
       .catch(err => console.log(err));
 
@@ -38,6 +42,8 @@ class StreamsCard extends React.Component {
     Axios
       .patch(`/api/users/${this.state.user._id}`, {
         dislikes: this.state.user.dislikes
+      }, {
+        headers: { Authorization: `Bearer ${Auth.getToken()}` }
       })
       .catch(err => console.log(err));
     this.setState(prevState => ({ i: prevState.i + 1 }));

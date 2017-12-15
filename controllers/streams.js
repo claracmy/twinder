@@ -6,17 +6,19 @@ function streamIndex(req, res, next) {
   let followers = '';
   let mature = '';
   const userId = req.headers.userid;
-
+  console.log(req.headers);
   return rp({
     method: 'GET',
     url: `http://localhost:8000/api/users/${userId}`,
-    json: true
+    json: true,
+    headers: {
+      Authorization: `${req.headers.authorization}`
+    }
   })
     .then(user => {
       language = user.language;
       game = user.games;
       mature = user.mature;
-
       return rp({
         method: 'GET',
         url: 'https://api.twitch.tv/kraken/channel',

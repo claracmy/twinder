@@ -73,7 +73,7 @@ class UsersForm extends React.Component {
           { errors.language && <small>{ errors.language }</small> }
           <hr />
 
-          <label htmlFor="mature">MATURE</label>
+          <label htmlFor="mature">MATURE CONTENT</label>
           <input className="form-control" type="Boolean" name="mature" id="mature" value={ user.mature } onChange={ handleChange } />
           { errors.mature && <small>{ errors.mature }</small> }
           <hr />
