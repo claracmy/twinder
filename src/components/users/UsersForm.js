@@ -29,18 +29,18 @@ let games = [];
 
 class UsersForm extends React.Component {
 
-
   componentWillMount() {
     Axios
       .get('/api/games')
       .then(res => {
         games = res.data.map(game => game.name);
-        console.log(games);
       })
       .catch(err => console.log(err));
   }
+
   render() {
-    const { handleSubmit, handleChange, user } = this.props;
+    const { handleSubmit, handleChange, user, errors } = this.props;
+    const formInvalid = Object.keys(errors).some(key => errors[key]);
 
     return (
       <div className="users-form container">
@@ -56,7 +56,9 @@ class UsersForm extends React.Component {
             onChange={(games) => handleChange({ target: { name: 'games', value: games }})}
             value={ user.games }
             showToggle={false}
-          /><hr />
+          />
+          { errors.games && <small>{ errors.games }</small> }
+          <hr />
 
           <label htmlFor="language">LANGUAGE</label>
           <Autosuggest
@@ -67,19 +69,26 @@ class UsersForm extends React.Component {
             onChange={(language) => handleChange({ target: { name: 'language', value: language }})}
             value={ user.language }
             showToggle={false}
-          /><hr />
+          />
+          { errors.language && <small>{ errors.language }</small> }
+          <hr />
 
           <label htmlFor="mature">MATURE</label>
           <input className="form-control" type="Boolean" name="mature" id="mature" value={ user.mature } onChange={ handleChange } />
+          { errors.mature && <small>{ errors.mature }</small> }
           <hr />
 
           <label htmlFor="followerCeiling">FOLLOWER CEILING</label>
-          <input className="form-control" type="Number" name="followerCeiling" id="followerCeiling" value={ user.followerCeiling } onChange={ handleChange } /><hr />
+          <input className="form-control" type="Number" name="followerCeiling" id="followerCeiling" value={ user.followerCeiling } onChange={ handleChange } />
+          { errors.followerCeiling && <small>{ errors.followerCeiling }</small> }
+          <hr />
 
           <label htmlFor="followerFloor">FOLLOWER FLOOR</label>
-          <input className="form-control" type="Number" name="followerFloor" id="followerFloor" value={ user.followerFloor } onChange={ handleChange } /><hr />
+          <input className="form-control" type="Number" name="followerFloor" id="followerFloor" value={ user.followerFloor } onChange={ handleChange } />
+          { errors.followerFloor && <small>{ errors.followerFloor }</small> }
+          <hr />
 
-          <button><p>Save</p></button>
+          <button disabled={ formInvalid }><p>Save</p></button>
         </form>
       </div>
     );
