@@ -18,7 +18,7 @@
 
 ## The App
 
-Twinder is a Tinder-esque stream discovery tool for Twitch streamers. The logged in user receives suggestions of live streamers with matching game, language, maturity rating and follower count. The user can then choose to interact with shown streamer or skip to the next one. Search results can be edited by specifying the game, language and follower range in the user's profile. The goal of the app is to help streamers grow their view base by networking with other similar streamers.
+Twinder is a Tinder-esque stream discovery tool for Twitch streamers. The logged in user receives suggestions of live streamers with matching game, language, maturity rating and follower count. The user can then choose to interact with shown streamer or skip to the next one. Search results can be edited by specifying the game, language and follower range in the user's profile. The goal of the app is to help streamers grow their viewer base by networking with other similar streamers.
 
 ## Challenges
 
