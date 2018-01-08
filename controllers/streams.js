@@ -9,7 +9,7 @@ function streamIndex(req, res, next) {
   console.log(req.headers);
   return rp({
     method: 'GET',
-    url: `http://localhost:8000/api/users/${userId}`,
+    url: `https://twinderapp.herokuapp.com/api/users/${userId}`,
     json: true,
     headers: {
       Authorization: `${req.headers.authorization}`
