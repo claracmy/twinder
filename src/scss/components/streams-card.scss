@@ -5,6 +5,11 @@
   padding: 20px;
   background-color: #ccc;
   @include step4( 5px, black, #ccc );
+
+  iframe {
+    height:450px;
+    width:800px;
+  }
 }
 
 .stream-name {

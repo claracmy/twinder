@@ -5,7 +5,7 @@ class OAuth {
     name: 'twitch',
     url: '/api/oauth/twitch',
     authorizationEndpoint: 'https://api.twitch.tv/kraken/oauth2/authorize',
-    redirectUri: 'http://localhost:8000',
+    redirectUri: 'https://twinderapp.herokuapp.com/',
     scope: ['channel_read'],
     scopeDelimiter: ' ',
     display: 'popup',

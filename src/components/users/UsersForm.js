@@ -1,6 +1,7 @@
 import React from 'react';
 import Autosuggest from 'react-bootstrap-autosuggest';
 import Axios from 'axios';
+import Auth from '../../lib/Auth';
 
 const languages = [
   'en',
@@ -31,7 +32,9 @@ class UsersForm extends React.Component {
 
   componentWillMount() {
     Axios
-      .get('/api/games')
+      .get('/api/games', {
+        headers: { Authorization: `Bearer ${Auth.getToken()}` }
+      })
       .then(res => {
         games = res.data.map(game => game.name);
       })
@@ -57,7 +60,7 @@ class UsersForm extends React.Component {
             value={ user.games }
             showToggle={false}
           />
-          { errors.games && <small>{ errors.games }</small> }
+          {/* { errors.games && <small>{ errors.games }</small> } */}
           <hr />
 
           <label htmlFor="language">LANGUAGE</label>
@@ -70,22 +73,22 @@ class UsersForm extends React.Component {
             value={ user.language }
             showToggle={false}
           />
-          { errors.language && <small>{ errors.language }</small> }
+          {/* { errors.language && <small>{ errors.language }</small> } */}
           <hr />
 
           <label htmlFor="mature">MATURE CONTENT</label>
           <input className="form-control" type="Boolean" name="mature" id="mature" value={ user.mature } onChange={ handleChange } />
-          { errors.mature && <small>{ errors.mature }</small> }
+          {/* { errors.mature && <small>{ errors.mature }</small> } */}
           <hr />
 
           <label htmlFor="followerCeiling">FOLLOWER CEILING</label>
           <input className="form-control" type="Number" name="followerCeiling" id="followerCeiling" value={ user.followerCeiling } onChange={ handleChange } />
-          { errors.followerCeiling && <small>{ errors.followerCeiling }</small> }
+          {/* { errors.followerCeiling && <small>{ errors.followerCeiling }</small> } */}
           <hr />
 
           <label htmlFor="followerFloor">FOLLOWER FLOOR</label>
           <input className="form-control" type="Number" name="followerFloor" id="followerFloor" value={ user.followerFloor } onChange={ handleChange } />
-          { errors.followerFloor && <small>{ errors.followerFloor }</small> }
+          {/* { errors.followerFloor && <small>{ errors.followerFloor }</small> } */}
           <hr />
 
           <button disabled={ formInvalid }><p>Save</p></button>

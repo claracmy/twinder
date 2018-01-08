@@ -13,7 +13,13 @@ class UsersEdit extends React.Component{
       followerCeiling: '',
       followerFloor: ''
     },
-    errors: ''
+    errors: {}
+    // errors: {
+    //   games: 'Please select a valid game',
+    //   language: 'Plase select a valid language',
+    //   mature: 'Please select either "true" or "false"'
+    // },
+    // showError: false
   }
 
   componentDidMount() {
@@ -35,6 +41,9 @@ class UsersEdit extends React.Component{
 
   handleSubmit = (e) => {
     e.preventDefault();
+
+
+
     Axios
       .patch(`/api/users/${this.props.match.params.id}`, this.state.user, {
         headers: {'Authorization': `Bearer ${Auth.getToken()}`}

@@ -57,7 +57,7 @@ class StreamsCard extends React.Component {
         <div className="pure-u-4-5 streams-card">
           <div className="pure-u-4-5 streams">
             <p className="stream-title"><i className="fa fa-circle rec"></i> NOW PLAYING: {this.props.streams[i].channel.status}</p>
-            <iframe className="frame-2" src={`http://player.twitch.tv/?channel=${this.props.streams[i].channel.display_name}&muted=true`} height="450" width="800" frameBorder="0" scrolling="no" allowFullScreen="true">
+            <iframe className="frame-2" src={`http://player.twitch.tv/?channel=${this.props.streams[i].channel.display_name}&muted=true`} frameBorder="0" scrolling="no" allowFullScreen="true">
             </iframe>
             <div className="stream-info">
               <div className="stream-name">
