@@ -18,7 +18,7 @@
 
 ## The App
 
-Twinder is a Tinder-esque stream discovery tool for Twitch streamers. The logged in user receives suggestions of live streamers with matching game, language, maturity rating and follower count. The user can then choose to interact with shown streamer or skip to the next one. Search results can be edited by specifying the game, language and follower range in the user's profile. The goal of the app is to help streamers grow their view base by networking with other similar streamers.
+Twinder is a Tinder-esque stream discovery tool for Twitch streamers. The logged in user receives suggestions of live streamers with matching game, language, maturity rating and follower count. The user can then choose to interact with shown streamer or skip to the next one. Search results can be edited by specifying the game, language and follower range in the user's profile. The goal of the app is to help streamers grow their viewer base by networking with other similar streamers.
 
 ## Challenges
 
@@ -48,8 +48,5 @@ Overall 8 bit styling to resonate with gamer's nostalgia.
 - Background credits [here](https://imgur.com/gallery/VZ9H2)
 - Pixel border credits [here](https://codepen.io/albpara/pen/xDBvc?q=8+bit&limit=all&type=type-pens)
 
-## Important
-
-Ensure that you add any relevant environment variables to heroku with `heroku config:set`, eg:
-
-`heroku config:set AWS_BUCKET_NAME=wdi-project-4`
+## Demo
+[HERE](https://twinderapp.herokuapp.com)
