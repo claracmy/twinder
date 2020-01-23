@@ -1,0 +1,12 @@
+{
+  "name": "@clearscore/rainbow.icons.ICON_NAME",
+  "version": "0.1.0",
+  "description": "SVG icon",
+  "main": "ICON_NAME.svg",
+  "author": "Clara Cheung <clara.cheung@clearscore.com> (http://www.clearscore.com)",
+  "license": "UNLICENSED",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ClearScore/js-modules.rainbow.git"
+  }
+}
